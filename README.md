@@ -3,4 +3,4 @@ Building a Medallion DWH with SQL Server, including ELT processing, data modelin
 
 ## Data Architecture
 The data architecture for this project follows Medallion Architecture.
-![Data Architecture](docs/data_architecture.png)
+![Data Architecture](docs/data_architecture.jpg)
