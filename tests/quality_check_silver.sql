@@ -21,6 +21,7 @@ Usage Notes:
 -- ====================================================================
 -- Checking 'silver.crm_cust_info'
 -- ====================================================================
+SELECT * FROM silver.crm_cust_info;
 -- Check for NULLS or Duplicates in PK
 -- Expectation: no results
 SELECT
@@ -50,6 +51,7 @@ FROM silver.crm_cust_info;
 -- ====================================================================
 -- Checking 'silver.crm_prd_info'
 -- ====================================================================
+SELECT * FROM silver.crm_prd_info;
 -- Check for NULLS or Duplicates in PK
 -- Expectation: no results
 SELECT
@@ -84,3 +86,92 @@ SELECT
     *
 FROM silver.crm_prd_info
 WHERE prd_end_dt < prd_start_dt;
+
+-- ====================================================================
+-- Checking 'silver.crm_sales_details'
+-- ====================================================================
+SELECT * FROM silver.crm_sales_details;
+-- Check for invalid dates
+-- Expectation: no invalid dates
+-- Check correct date order
+SELECT
+    *
+FROM silver.crm_sales_details
+WHERE sls_order_dt > sls_ship_dt
+    OR sls_order_dt > sls_due_dt;
+
+-- Check that:
+-- sales = quantity * price & 
+-- sls_price, sls_quantity, sls_sales >= 0 & NOT NULL
+SELECT
+    sls_price,
+    sls_quantity,
+    sls_sales
+FROM silver.crm_sales_details
+WHERE sls_price * sls_quantity != sls_sales
+    OR sls_price IS NULL OR sls_quantity IS NULL OR sls_sales IS NULL
+    OR sls_price <= 0 OR sls_quantity <= 0 OR sls_sales <= 0;
+
+-- ====================================================================
+-- Checking 'silver.erp_cust_az12'
+-- ====================================================================
+SELECT * FROM silver.erp_cust_az12;
+-- Ckeck if any customers have birthday in future
+-- Expectation: no results
+SELECT
+    bdate
+FROM silver.erp_cust_az12
+WHERE bdate > GETDATE();
+
+-- Check all possible values in gender
+-- Expectation: male, female, n/a
+SELECT DISTINCT
+    gen
+FROM silver.erp_cust_az12;
+
+-- ====================================================================
+-- Checking 'silver.erp_loc_a101'
+-- ====================================================================
+SELECT * FROM silver.erp_loc_a101;
+-- Check that all cid from erp_loc_a101 are usable in crm_cust_info
+-- Expectation: no results
+SELECT
+    cid
+FROM silver.erp_loc_a101
+WHERE cid NOT IN (SELECT cst_key FROM silver.crm_cust_info);
+
+-- Check all possible values in country
+-- Expectation: full country names, n/a
+SELECT DISTINCT
+    cntry
+FROM silver.erp_loc_a101;
+
+-- ====================================================================
+-- Checking 'silver.erp_px_cat_g1v2'
+-- ====================================================================
+SELECT * FROM silver.erp_px_cat_g1v2;
+-- Check unwanted spaces in category & subcategoty name
+-- Expectation: no results
+SELECT
+    *
+FROM silver.erp_px_cat_g1v2
+WHERE TRIM(cat) != cat;
+
+SELECT
+    *
+FROM silver.erp_px_cat_g1v2
+WHERE TRIM(subcat) != subcat;
+
+-- Check all possible values in maintenance
+-- Expectation: yes, no
+SELECT DISTINCT
+    maintenance
+FROM silver.erp_px_cat_g1v2;
+
+SELECT DISTINCT
+    cat
+FROM silver.erp_px_cat_g1v2;
+
+SELECT DISTINCT
+    subcat
+FROM silver.erp_px_cat_g1v2;
