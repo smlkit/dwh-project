@@ -1,5 +1,10 @@
-# dwh-project
+# Data Warehouse Project
 Building a Medallion DWH with SQL Server, including ELT processing, data modeling, and analytics.
+
+- `SQL Server Express` as relational database management system
+- `SQL Server Management Studio (SSMS)` as IDE for writing and executing T-SQL
+- `git` for version control
+- `DrawIO` to design data architecture, models, data flows, and diagrams 
 
 ## Data Architecture
 The data architecture for this project follows Medallion Architecture.
