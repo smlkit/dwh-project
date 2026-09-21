@@ -1,7 +1,7 @@
 > 🌐 **Choose documentation language / Выберите язык документации:**
 >
-> [![English Language](https://img.shields.io/badge/🇺🇸_English-blue.svg)](README_DWH.eng.md)
-> [![Russian Language](https://img.shields.io/badge/🇷🇺_Русский-green.svg)](README_DWH.rus.md)
+> [![English Language](https://img.shields.io/badge/🇺🇸_English-blue.svg)](README.eng.md)
+> [![Russian Language](https://img.shields.io/badge/🇷🇺_Русский-green.svg)](README.rus.md)
 
 ### 📖 About this project / О проекте
 
