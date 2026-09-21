@@ -11,8 +11,8 @@ This repository contains a full **Data Warehouse Project** built with SQL Server
 
 ### 🌍 Documentation languages / Языки документации
 
-- 🇬🇧 [English version](README_DWH.eng.md)
-- 🇷🇺 [Русская версия](README_DWH.rus.md)
+- 🇬🇧 [English version](README.eng.md)
+- 🇷🇺 [Русская версия](README.rus.md)
 
 > Click a link above to switch the language.  
 > Нажмите на ссылку выше, чтобы выбрать язык.
